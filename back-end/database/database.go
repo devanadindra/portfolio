@@ -11,15 +11,15 @@ import (
 	"github.com/devanadindra/portfolio/back-end/utils/config"
 )
 
-type AdminDB struct {
+type OwnerDB struct {
 	*gorm.DB
 }
 
-type CustomerDB struct {
+type VisitorsDB struct {
 	*gorm.DB
 }
 
-func NewDBCustomer(conf *config.Config) (*CustomerDB, error) {
+func NewDBCustomer(conf *config.Config) (*VisitorsDB, error) {
 	connStr := fmt.Sprintf(
 		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		conf.Database.CustomerUsername,
@@ -45,10 +45,10 @@ func NewDBCustomer(conf *config.Config) (*CustomerDB, error) {
 		return nil, err
 	}
 
-	return &CustomerDB{gormDB}, nil
+	return &VisitorsDB{gormDB}, nil
 }
 
-func NewDBAdmin(conf *config.Config) (*AdminDB, error) {
+func NewDBAdmin(conf *config.Config) (*OwnerDB, error) {
 	connStr := fmt.Sprintf(
 		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		conf.Database.AdminUsername,
@@ -74,7 +74,7 @@ func NewDBAdmin(conf *config.Config) (*AdminDB, error) {
 		return nil, err
 	}
 
-	return &AdminDB{gormDB}, nil
+	return &OwnerDB{gormDB}, nil
 }
 
 func getGormDB(connStr string) (gormDB *gorm.DB, err error) {
@@ -96,5 +96,5 @@ func getGormDB(connStr string) (gormDB *gorm.DB, err error) {
 	return gormDB, nil
 }
 
-func FromCustomerDB(db *CustomerDB) *gorm.DB { return db.DB }
-func FromAdminDB(db *AdminDB) *gorm.DB       { return db.DB }
+func FromVisitorsDB(db *VisitorsDB) *gorm.DB { return db.DB }
+func FromOwnerDB(db *OwnerDB) *gorm.DB       { return db.DB }

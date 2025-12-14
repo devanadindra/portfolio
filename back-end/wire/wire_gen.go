@@ -25,26 +25,26 @@ import (
 // Injectors from wire.go:
 
 func initializeDependency(config2 *config.Config) (*routes.Dependency, error) {
-	adminDB, err := database.NewDBAdmin(config2)
+	OwnerDB, err := database.NewDBAdmin(config2)
 	if err != nil {
 		return nil, err
 	}
-	customerDB, err := database.NewDBCustomer(config2)
+	VisitorsDB, err := database.NewDBCustomer(config2)
 	if err != nil {
 		return nil, err
 	}
-	dbService := dbselector.NewDBService(adminDB, customerDB)
-	service := user.NewService(config2, dbService, customerDB, adminDB)
+	dbService := dbselector.NewDBService(OwnerDB, VisitorsDB)
+	service := user.NewService(config2, dbService, VisitorsDB, OwnerDB)
 	middlewaresMiddlewares := middlewares.NewMiddlewares(config2, service)
 	validate := validator.New()
 	handler := user.NewHandler(service, validate)
-	kamusService := kamus.NewService(config2, dbService, customerDB, adminDB)
+	kamusService := kamus.NewService(config2, dbService, VisitorsDB, OwnerDB)
 	kamusHandler := kamus.NewHandler(kamusService, validate)
-	latihanService := latihan.NewService(config2, dbService, customerDB, adminDB)
+	latihanService := latihan.NewService(config2, dbService, VisitorsDB, OwnerDB)
 	latihanHandler := latihan.NewHandler(latihanService, validate)
-	kuisService := kuis.NewService(config2, dbService, customerDB, adminDB)
+	kuisService := kuis.NewService(config2, dbService, VisitorsDB, OwnerDB)
 	kuisHandler := kuis.NewHandler(kuisService, validate)
-	dependency := routes.NewDependency(config2, middlewaresMiddlewares, adminDB, customerDB, handler, kamusHandler, latihanHandler, kuisHandler)
+	dependency := routes.NewDependency(config2, middlewaresMiddlewares, OwnerDB, VisitorsDB, handler, kamusHandler, latihanHandler, kuisHandler)
 	return dependency, nil
 }
 

@@ -20,8 +20,8 @@ import (
 func NewDependency(
 	conf *config.Config,
 	mw middlewares.Middlewares,
-	adminDB *database.AdminDB,
-	customerDB *database.CustomerDB,
+	OwnerDB *database.OwnerDB,
+	VisitorsDB *database.VisitorsDB,
 	userHandler user.Handler,
 	kamusHandler kamus.Handler,
 	latihanHandler latihan.Handler,
@@ -108,8 +108,8 @@ func NewDependency(
 
 	return &Dependency{
 		handler:    router,
-		AdminDB:    adminDB,
-		CustomerDB: customerDB,
+		OwnerDB:    OwnerDB,
+		VisitorsDB: VisitorsDB,
 	}
 }
 

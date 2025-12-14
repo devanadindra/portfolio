@@ -56,6 +56,6 @@ func (r ROLE) String() string {
 }
 
 const (
-	ADMIN    ROLE = "ADMIN"
-	CUSTOMER ROLE = "CUSTOMER"
+	OWNER    ROLE = "OWNER"
+	VISITORS ROLE = "VISITORS"
 )

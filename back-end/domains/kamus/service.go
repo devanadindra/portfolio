@@ -30,16 +30,16 @@ type Service interface {
 type service struct {
 	authConfig config.Auth
 	dbSelector *dbselector.DBService
-	CustomerDB *database.CustomerDB
-	AdminDB    *database.AdminDB
+	VisitorsDB *database.VisitorsDB
+	OwnerDB    *database.OwnerDB
 }
 
-func NewService(config *config.Config, dbSelector *dbselector.DBService, CustomerDB *database.CustomerDB, AdminDB *database.AdminDB) Service {
+func NewService(config *config.Config, dbSelector *dbselector.DBService, VisitorsDB *database.VisitorsDB, OwnerDB *database.OwnerDB) Service {
 	return &service{
 		authConfig: config.Auth,
 		dbSelector: dbSelector,
-		CustomerDB: CustomerDB,
-		AdminDB:    AdminDB,
+		VisitorsDB: VisitorsDB,
+		OwnerDB:    OwnerDB,
 	}
 }
 

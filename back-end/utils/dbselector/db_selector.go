@@ -12,14 +12,14 @@ import (
 )
 
 type DBService struct {
-	AdminDB    *database.AdminDB
-	CustomerDB *database.CustomerDB
+	OwnerDB    *database.OwnerDB
+	VisitorsDB *database.VisitorsDB
 }
 
-func NewDBService(adminDB *database.AdminDB, customerDB *database.CustomerDB) *DBService {
+func NewDBService(OwnerDB *database.OwnerDB, VisitorsDB *database.VisitorsDB) *DBService {
 	return &DBService{
-		AdminDB:    adminDB,
-		CustomerDB: customerDB,
+		OwnerDB:    OwnerDB,
+		VisitorsDB: VisitorsDB,
 	}
 }
 
@@ -32,9 +32,9 @@ func (s *DBService) GetDBByRole(ctx context.Context) (*gorm.DB, error) {
 
 	switch token.Claims.Role {
 	case constants.ADMIN:
-		return s.AdminDB.DB, nil
+		return s.OwnerDB.DB, nil
 	case constants.CUSTOMER:
-		return s.CustomerDB.DB, nil
+		return s.VisitorsDB.DB, nil
 	default:
 		return nil, apierror.NewWarn(http.StatusUnauthorized)
 	}
