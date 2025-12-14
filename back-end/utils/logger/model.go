@@ -6,7 +6,7 @@ import (
 	"github.com/devanadindra/portfolio/back-end/utils/constants"
 )
 
-const PACKAGE_NAME = "github.com/devanadindra/signlink-mobile/back-end"
+const PACKAGE_NAME = "github.com/devanadindra/portfolio/back-end"
 
 type LogPayload struct {
 	Method         string
