@@ -21,7 +21,7 @@ func main() {
 	dbName := os.Getenv("BACKEND_DATABASE_NAME")
 	dbRoot := os.Getenv("BACKEND_DATABASE_ROOT_USERNAME")
 	dbRootPass := os.Getenv("BACKEND_DATABASE_ROOT_PASSWORD")
-	customerUser := os.Getenv("BACKEND_DATABASE_CUSTOMER_USERNAME")
+	visitorUser := os.Getenv("BACKEND_DATABASE_CUSTOMER_USERNAME")
 	customerPass := os.Getenv("BACKEND_DATABASE_CUSTOMER_PASSWORD")
 	adminUser := os.Getenv("BACKEND_DATABASE_ADMIN_USERNAME")
 	adminPass := os.Getenv("BACKEND_DATABASE_ADMIN_PASSWORD")
@@ -47,7 +47,7 @@ BEGIN
 	END IF;
 END
 $$;
-`, customerUser, customerUser, customerPass, adminUser, adminUser, adminPass)
+`, visitorUser, visitorUser, customerPass, adminUser, adminUser, adminPass)
 
 	if err := db.Exec(createUserSQL).Error; err != nil {
 		log.Fatal("Failed to create users:", err)
@@ -55,22 +55,16 @@ $$;
 	log.Println("Customer and Admin users created successfully!")
 
 	grantCustomerSQL := fmt.Sprintf(`
-		GRANT SELECT, INSERT, UPDATE ON customer TO %s;
-		GRANT SELECT ON kamus TO %s;
-		GRANT SELECT ON latihan TO %s;
-		GRANT SELECT ON soal_latihan TO %s;
-		GRANT SELECT ON modul_kuis TO %s;
-		GRANT SELECT ON soal_kuis TO %s;
-		GRANT SELECT ON opsi_kuis TO %s;
-		GRANT select, insert  ON invalid_token TO %s;
-		GRANT select, insert  ON stats_latihan TO %s;
-		GRANT select, insert  ON stats_kuis TO %s;
-	`, customerUser, customerUser, customerUser, customerUser, customerUser, customerUser, customerUser, customerUser, customerUser, customerUser)
+		GRANT SELECT ON about TO %s;
+		GRANT SELECT ON skills TO %s;
+		GRANT SELECT ON projects TO %s;
+		GRANT SELECT ON project_images TO %s;
+	`, visitorUser, visitorUser, visitorUser, visitorUser)
 
 	if err := db.Exec(grantCustomerSQL).Error; err != nil {
-		log.Fatal("Failed to grant privileges to customer_app:", err)
+		log.Fatal("Failed to grant privileges to visitors_app:", err)
 	}
-	log.Println("Privileges granted to customer_app successfully!")
+	log.Println("Privileges granted to visitors_app successfully!")
 
 	grantAdminSQL := fmt.Sprintf(`
 DO $$

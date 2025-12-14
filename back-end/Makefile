@@ -26,6 +26,9 @@ create-migration:
 migrate:
 	migrate -path ./migrations -database postgres://${BACKEND_DATABASE_ROOT_USERNAME}:${BACKEND_DATABASE_ROOT_PASSWORD}@${BACKEND_DATABASE_CONTAINER}:${BACKEND_DATABASE_PORT}/${BACKEND_DATABASE_NAME}?sslmode=disable up
 
+force:
+	migrate -path ./migrations -database postgres://${BACKEND_DATABASE_ROOT_USERNAME}:${BACKEND_DATABASE_ROOT_PASSWORD}@${BACKEND_DATABASE_CONTAINER}:${BACKEND_DATABASE_PORT}/${BACKEND_DATABASE_NAME}?sslmode=disable force ${N}
+
 migrate-down:
 	migrate -path ./migrations -database "postgres://${BACKEND_DATABASE_ROOT_USERNAME}:${BACKEND_DATABASE_ROOT_PASSWORD}@${BACKEND_DATABASE_CONTAINER}:${BACKEND_DATABASE_PORT}/${BACKEND_DATABASE_NAME}?sslmode=disable" down ${N}
 

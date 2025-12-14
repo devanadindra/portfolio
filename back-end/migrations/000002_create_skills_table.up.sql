@@ -1,5 +1,5 @@
 CREATE TABLE
-    IF NOT EXISTS about (
+    IF NOT EXISTS skills (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid (),
         user_id UUID NOT NULL REFERENCES owner (id) ON DELETE CASCADE,
         name VARCHAR NOT NULL,

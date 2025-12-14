@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS invalid_token (
     expires TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-INSERT INTO admin (id, name, password, email)
+INSERT INTO owner (id, name, username, password, email)
 VALUES (
     gen_random_uuid(),
     'devanadindra',
