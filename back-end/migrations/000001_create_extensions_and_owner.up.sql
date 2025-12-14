@@ -1,23 +1,27 @@
-CREATE TABLE IF NOT EXISTS customer (
+CREATE TABLE IF NOT EXISTS owner (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR NOT NULL,
-    email VARCHAR NOT NULL UNIQUE,
+    username VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
+    email VARCHAR NOT NULL UNIQUE,
     avatar_url VARCHAR,
-    google_id VARCHAR,
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS admin (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR NOT NULL,
-    password VARCHAR NOT NULL,
-    email VARCHAR NOT NULL UNIQUE,
-    avatar_url VARCHAR,
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+CREATE TABLE
+    IF NOT EXISTS about (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid (),
+        name VARCHAR NOT NULL,
+        nim VARCHAR(11) NOT NULL,
+        major VARCHAR,
+        faculty VARCHAR,
+        biography VARCHAR,
+        slogan TEXT,
+        img_url TEXT,
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW ()
+    );
 
 CREATE TABLE IF NOT EXISTS invalid_token (
     token TEXT PRIMARY KEY,
@@ -27,9 +31,8 @@ CREATE TABLE IF NOT EXISTS invalid_token (
 INSERT INTO admin (id, name, password, email)
 VALUES (
     gen_random_uuid(),
-    'Owner',
+    'devanadindra',
+    'devanadindra',
     '$2a$12$uWKbKpJVPz65kqb1RIHhHeYr.cuokKHA1lKfNLPyg9MbZlabGrkha',
     'owner@gmail.com'
 );
-
-ALTER TABLE customer ADD COLUMN has_password BOOLEAN NOT NULL DEFAULT FALSE;

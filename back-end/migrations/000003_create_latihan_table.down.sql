@@ -1,3 +1,0 @@
-DROP TABLE IF EXISTS latihan;
-DROP TABLE IF EXISTS soal_latihan;
-DROP TABLE IF EXISTS stats_latihan;
