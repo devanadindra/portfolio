@@ -11,7 +11,7 @@ import (
 	"github.com/devanadindra/portfolio/back-end/database"
 	"github.com/devanadindra/portfolio/back-end/domains/kamus"
 	"github.com/devanadindra/portfolio/back-end/domains/kuis"
-	"github.com/devanadindra/portfolio/back-end/domains/latihan"
+	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
 	"github.com/devanadindra/portfolio/back-end/routes"
@@ -38,9 +38,9 @@ var kamusSet = wire.NewSet(
 	kamus.NewHandler,
 )
 
-var latihanSet = wire.NewSet(
-	latihan.NewService,
-	latihan.NewHandler,
+var skillSet = wire.NewSet(
+	skill.NewService,
+	skill.NewHandler,
 )
 
 var kuisSet = wire.NewSet(
@@ -58,7 +58,7 @@ func initializeDependency(config *config.Config) (*routes.Dependency, error) {
 		routes.NewDependency,
 		userSet,
 		kamusSet,
-		latihanSet,
+		skillSet,
 		kuisSet,
 	)
 

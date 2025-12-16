@@ -8,29 +8,27 @@ import Footer from './components/Footer';
 import './style/index.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { API_BASE } from "../utils/constants";
 
 
 function App() {
-  const [loading, setLoading] = useState(true); // Status loading untuk spinner
-  const [error, setError] = useState(false); // Status error untuk koneksi
-  const [personalData, setPersonalData] = useState(null); // State untuk data personal
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    // Mencoba untuk terhubung ke API
-    fetch("https://backend-porto-production.up.railway.app/api/personal")
+    fetch(`${API_BASE}/user/about`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Not Found"); // Jika response tidak ok, throw error
+          throw new Error("Not Found");
         }
-        return res.json(); // Jika berhasil, lanjutkan ke data JSON (meskipun kita tidak mengambil data)
+        return res.json();
       })
       .then((data) => {
-        setPersonalData(data); // Set personalData jika berhasil
-        setLoading(false); // Set loading false jika berhasil
+        setLoading(false);
       })
       .catch(() => {
-        setError(true); // Jika terjadi error, set error true
-        setLoading(false); // Set loading false setelah error
+        setError(true);
+        setLoading(false);
       });
           AOS.init({
             duration: 1000,
@@ -39,7 +37,6 @@ function App() {
   }, []);
 
   if (loading) {
-    // Menampilkan spinner selama loading
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-[#8c2b7a]"></div>
@@ -59,10 +56,9 @@ function App() {
   return (
     <div className="m-0 p-0">
       <Navbar />
-      {/* Mengirimkan personalData ke komponen Home sebagai prop */}
-      <Home personalData={personalData} />
-      <About personalData={personalData} />
-      <Certification personalData={personalData}/>
+      <Home />
+      <About />
+      <Certification/>
       <ContactForm />
       <Footer />
     </div>

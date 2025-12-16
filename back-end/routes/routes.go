@@ -8,7 +8,7 @@ import (
 	"github.com/devanadindra/portfolio/back-end/database"
 	"github.com/devanadindra/portfolio/back-end/domains/kamus"
 	"github.com/devanadindra/portfolio/back-end/domains/kuis"
-	"github.com/devanadindra/portfolio/back-end/domains/latihan"
+	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
 	apierror "github.com/devanadindra/portfolio/back-end/utils/api-error"
@@ -24,7 +24,7 @@ func NewDependency(
 	VisitorsDB *database.VisitorsDB,
 	userHandler user.Handler,
 	kamusHandler kamus.Handler,
-	latihanHandler latihan.Handler,
+	skillHandler skill.Handler,
 	kuisHandler kuis.Handler,
 ) *Dependency {
 
@@ -53,49 +53,37 @@ func NewDependency(
 	user := api.Group("/user")
 	{
 		user.POST("/login", mw.BasicAuth, userHandler.Login)
-		user.POST("/google", mw.GoogleAuth(), userHandler.GoogleAuth)
-		user.GET("/verify-token", mw.JWT(constants.ADMIN, constants.CUSTOMER), userHandler.VerifyToken)
-		user.POST("/logout", mw.JWT(constants.ADMIN, constants.CUSTOMER), userHandler.Logout)
+		user.GET("/verify-token", mw.JWT(constants.OWNER), userHandler.VerifyToken)
+		user.POST("/logout", mw.JWT(constants.OWNER), userHandler.Logout)
 		user.POST("/reset-req", mw.BasicAuth, userHandler.ResetPassword)
 		user.PATCH("/reset-submit", mw.BasicAuth, userHandler.ResetPasswordSubmit)
-		user.POST("/register", mw.BasicAuth, userHandler.Register)
-		user.POST("/registerAdmin", mw.JWT(constants.ADMIN), userHandler.RegisterAdmin)
-		user.PATCH("/updateUser", mw.JWT(constants.CUSTOMER, constants.ADMIN), userHandler.UpdateProfile)
-		user.POST("/avatar", mw.JWT(constants.CUSTOMER, constants.ADMIN), userHandler.AddAvatar)
-		user.DELETE("/avatar", mw.JWT(constants.CUSTOMER, constants.ADMIN), userHandler.DeleteAvatar)
-		user.PATCH("/password", mw.JWT(constants.ADMIN, constants.CUSTOMER), userHandler.ChangePassword)
-		user.GET("/get-personal", mw.JWT(constants.ADMIN, constants.CUSTOMER), userHandler.GetPersonal)
-		user.GET("/check-jwt", mw.JWT(constants.ADMIN, constants.CUSTOMER), func(ctx *gin.Context) {
+		user.PATCH("/password", mw.JWT(constants.OWNER), userHandler.ChangePassword)
+		user.GET("/about", mw.OptionalJWT(constants.OWNER), userHandler.GetAbout)
+		user.GET("/check-jwt", mw.JWT(constants.OWNER), func(ctx *gin.Context) {
 			respond.Success(ctx, http.StatusOK, "JWT is valid")
 		})
 	}
 
 	kamus := api.Group("/kamus")
 	{
-		kamus.GET("/", mw.JWT(constants.ADMIN, constants.CUSTOMER), kamusHandler.GetKamus)
-		kamus.GET("/all", mw.JWT(constants.ADMIN, constants.CUSTOMER), kamusHandler.GetAllKamus)
-		kamus.POST("/", mw.JWT(constants.ADMIN), kamusHandler.AddKamus)
-		kamus.DELETE("/:id", mw.JWT(constants.ADMIN), kamusHandler.DeleteKamus)
+		kamus.GET("/", mw.JWT(constants.OWNER), kamusHandler.GetKamus)
+		kamus.GET("/all", mw.JWT(constants.OWNER), kamusHandler.GetAllKamus)
+		kamus.POST("/", mw.JWT(constants.OWNER), kamusHandler.AddKamus)
+		kamus.DELETE("/:id", mw.JWT(constants.OWNER), kamusHandler.DeleteKamus)
 	}
 
-	latihan := api.Group("/latihan")
-	{
-		latihan.GET("/", mw.JWT(constants.ADMIN, constants.CUSTOMER), latihanHandler.GetAllLatihan)
-		latihan.GET("/:id", mw.JWT(constants.ADMIN, constants.CUSTOMER), latihanHandler.GetLatihanById)
-		latihan.POST("/", mw.JWT(constants.ADMIN), latihanHandler.AddLatihan)
-		latihan.POST("/stats", mw.JWT(constants.ADMIN, constants.CUSTOMER), latihanHandler.AddStatsLatihan)
-		latihan.GET("/stats", mw.JWT(constants.ADMIN, constants.CUSTOMER), latihanHandler.GetStatsByUserId)
-		latihan.DELETE("/:id", mw.JWT(constants.ADMIN), latihanHandler.DeleteLatihan)
-	}
+	// Skill := api.Group("/skill")
+	// {
+	// }
 
 	kuis := api.Group("/kuis")
 	{
-		kuis.GET("/", mw.JWT(constants.ADMIN, constants.CUSTOMER), kuisHandler.GetAllKuis)
-		kuis.GET("/:id", mw.JWT(constants.ADMIN, constants.CUSTOMER), kuisHandler.GetKuisById)
-		kuis.POST("/", mw.JWT(constants.ADMIN), kuisHandler.AddKuis)
-		kuis.POST("/stats", mw.JWT(constants.ADMIN, constants.CUSTOMER), kuisHandler.AddStatsKuis)
-		kuis.GET("/stats", mw.JWT(constants.ADMIN, constants.CUSTOMER), kuisHandler.GetStatsByUserId)
-		kuis.DELETE("/:id", mw.JWT(constants.ADMIN), kuisHandler.DeleteKuis)
+		kuis.GET("/", mw.JWT(constants.OWNER), kuisHandler.GetAllKuis)
+		kuis.GET("/:id", mw.JWT(constants.OWNER), kuisHandler.GetKuisById)
+		kuis.POST("/", mw.JWT(constants.OWNER), kuisHandler.AddKuis)
+		kuis.POST("/stats", mw.JWT(constants.OWNER), kuisHandler.AddStatsKuis)
+		kuis.GET("/stats", mw.JWT(constants.OWNER), kuisHandler.GetStatsByUserId)
+		kuis.DELETE("/:id", mw.JWT(constants.OWNER), kuisHandler.DeleteKuis)
 	}
 
 	router.NoRoute(func(ctx *gin.Context) {

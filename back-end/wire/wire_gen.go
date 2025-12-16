@@ -10,7 +10,7 @@ import (
 	"github.com/devanadindra/portfolio/back-end/database"
 	"github.com/devanadindra/portfolio/back-end/domains/kamus"
 	"github.com/devanadindra/portfolio/back-end/domains/kuis"
-	"github.com/devanadindra/portfolio/back-end/domains/latihan"
+	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
 	"github.com/devanadindra/portfolio/back-end/routes"
@@ -18,33 +18,35 @@ import (
 	"github.com/devanadindra/portfolio/back-end/utils/dbselector"
 	"github.com/go-playground/validator/v10"
 	"github.com/google/wire"
+)
 
+import (
 	_ "github.com/google/subcommands"
 )
 
 // Injectors from wire.go:
 
 func initializeDependency(config2 *config.Config) (*routes.Dependency, error) {
-	OwnerDB, err := database.NewDBAdmin(config2)
+	ownerDB, err := database.NewDBAdmin(config2)
 	if err != nil {
 		return nil, err
 	}
-	VisitorsDB, err := database.NewDBCustomer(config2)
+	visitorsDB, err := database.NewDBCustomer(config2)
 	if err != nil {
 		return nil, err
 	}
-	dbService := dbselector.NewDBService(OwnerDB, VisitorsDB)
-	service := user.NewService(config2, dbService, VisitorsDB, OwnerDB)
+	dbService := dbselector.NewDBService(ownerDB, visitorsDB)
+	service := user.NewService(config2, dbService, visitorsDB, ownerDB)
 	middlewaresMiddlewares := middlewares.NewMiddlewares(config2, service)
 	validate := validator.New()
 	handler := user.NewHandler(service, validate)
-	kamusService := kamus.NewService(config2, dbService, VisitorsDB, OwnerDB)
+	kamusService := kamus.NewService(config2, dbService, visitorsDB, ownerDB)
 	kamusHandler := kamus.NewHandler(kamusService, validate)
-	latihanService := latihan.NewService(config2, dbService, VisitorsDB, OwnerDB)
-	latihanHandler := latihan.NewHandler(latihanService, validate)
-	kuisService := kuis.NewService(config2, dbService, VisitorsDB, OwnerDB)
+	skillService := skill.NewService(config2, dbService, visitorsDB, ownerDB)
+	skillHandler := skill.NewHandler(skillService, validate)
+	kuisService := kuis.NewService(config2, dbService, visitorsDB, ownerDB)
 	kuisHandler := kuis.NewHandler(kuisService, validate)
-	dependency := routes.NewDependency(config2, middlewaresMiddlewares, OwnerDB, VisitorsDB, handler, kamusHandler, latihanHandler, kuisHandler)
+	dependency := routes.NewDependency(config2, middlewaresMiddlewares, ownerDB, visitorsDB, handler, kamusHandler, skillHandler, kuisHandler)
 	return dependency, nil
 }
 
@@ -58,6 +60,6 @@ var userSet = wire.NewSet(user.NewService, user.NewHandler)
 
 var kamusSet = wire.NewSet(kamus.NewService, kamus.NewHandler)
 
-var latihanSet = wire.NewSet(latihan.NewService, latihan.NewHandler)
+var skillSet = wire.NewSet(skill.NewService, skill.NewHandler)
 
 var kuisSet = wire.NewSet(kuis.NewService, kuis.NewHandler)

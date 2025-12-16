@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { API_BASE } from "../utils/constants";
 
-export function About({ personalData }) {
+export function About() {
+    const [aboutData, setAboutData] = useState(null);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
   const educationSteps = [
     { label: "SD Al Furqan Jember", date: "2011 - 2017", status: "completed" },
@@ -22,10 +24,30 @@ export function About({ personalData }) {
       }
     };
 
-    // Check screen size on initial load
+      useEffect(() => {
+        fetch(`${API_BASE}/user/about`)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Not Found");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            setAboutData(data);
+            setLoading(false);
+          })
+          .catch(() => {
+            setError(true);
+            setLoading(false);
+          });
+              AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+              });
+      }, []);
+
     handleResize();
 
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
 
     // Clean up event listener on component unmount
@@ -56,7 +78,7 @@ export function About({ personalData }) {
               data-aos-delay="800"
               data-aos-duration="800"
             >
-              {personalData?.biography}
+              {aboutData?.Biography}
             </p>
           </div>
 
@@ -92,7 +114,7 @@ export function About({ personalData }) {
               data-aos-duration="800"
             >
               <a
-                href="https://github.com/devanadindraa"
+                href="https://github.com/devanadindra"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -150,10 +172,8 @@ export function About({ personalData }) {
                   key={index}
                   className="flex-1 flex flex-col items-center text-center relative"
                 >
-                  {/* Line between steps */}
                   {educationSteps.length > 1 && (
                     <>
-                      {/* Right line */}
                       {index !== educationSteps.length - 1 && (
                         <div
                           className={`absolute top-4 left-[50%] w-[100%] h-1 z-0 ${
@@ -344,7 +364,7 @@ export function About({ personalData }) {
           data-aos-duration="800"
         >
           <div className="skill-set__flex">
-            {personalData.skills.map((skill, idx) => (
+            {aboutData.skills.map((skill, idx) => (
               <ul className="skill-set__list" key={idx}>
                 <li className="skill-set__item">
                   <div className="skill-set__icon">

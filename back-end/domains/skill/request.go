@@ -1,4 +1,4 @@
-package latihan
+package skill
 
 type LatihanReq struct {
 	Name        string   `json:"name" form:"name" binding:"required"`

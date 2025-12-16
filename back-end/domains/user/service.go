@@ -304,6 +304,7 @@ func (s *service) GetAbout(ctx context.Context) (*AboutRes, error) {
 
 	var about About
 	err = db.WithContext(ctx).
+		Preload("Skills").
 		First(&about).Error
 	if err != nil {
 		return nil, err
@@ -316,6 +317,17 @@ func (s *service) GetAbout(ctx context.Context) (*AboutRes, error) {
 	res.Biography = about.Biography
 	res.Slogan = about.Slogan
 	res.ImgUrl = about.ImgUrl
+
+	res.Skills = make([]SkillRes, 0, len(about.Skills))
+	for _, sk := range about.Skills {
+		res.Skills = append(res.Skills, SkillRes{
+			Name:       sk.Name,
+			Ratio:      sk.Ratio,
+			Experience: sk.Experience,
+			Period:     sk.Period,
+			ImgUrl:     sk.ImgUrl,
+		})
+	}
 
 	return res, nil
 }

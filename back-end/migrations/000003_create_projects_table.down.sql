@@ -1,2 +1,2 @@
-DROP TABLE IF EXISTS project_imges;
+DROP TABLE IF EXISTS project_images;
 DROP TABLE IF EXISTS projects;

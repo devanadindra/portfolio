@@ -32,4 +32,13 @@ type AboutRes struct {
 	Biography string
 	Slogan    string
 	ImgUrl    string
+	Skills    []SkillRes
+}
+
+type SkillRes struct {
+	Name       string
+	Ratio      int
+	Experience int
+	Period     string
+	ImgUrl     string
 }

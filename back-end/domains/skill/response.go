@@ -1,4 +1,4 @@
-package latihan
+package skill
 
 type LatihanRes struct {
 	ID        string `json:"id"`

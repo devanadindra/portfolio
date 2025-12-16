@@ -3,6 +3,7 @@ package user
 import (
 	"time"
 
+	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/google/uuid"
 )
 
@@ -39,8 +40,9 @@ type About struct {
 	Biography string
 	Slogan    string
 	ImgUrl    string
-	CreatedAt time.Time `gorm:"autoCreateTime"`
-	UpdatedAt time.Time `gorm:"autoUpdateTime"`
+	Skills    []skill.Skill `gorm:"foreignKey:AboutID;references:ID"`
+	CreatedAt time.Time     `gorm:"autoCreateTime"`
+	UpdatedAt time.Time     `gorm:"autoUpdateTime"`
 }
 
 func (About) TableName() string {
