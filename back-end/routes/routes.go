@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/devanadindra/portfolio/back-end/database"
+	"github.com/devanadindra/portfolio/back-end/domains/certif"
 	"github.com/devanadindra/portfolio/back-end/domains/kamus"
-	"github.com/devanadindra/portfolio/back-end/domains/kuis"
 	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
@@ -25,7 +25,7 @@ func NewDependency(
 	userHandler user.Handler,
 	kamusHandler kamus.Handler,
 	skillHandler skill.Handler,
-	kuisHandler kuis.Handler,
+	certifHandler certif.Handler,
 ) *Dependency {
 
 	if conf.Environment != config.DEVELOPMENT_ENVIRONMENT {
@@ -76,14 +76,11 @@ func NewDependency(
 	// {
 	// }
 
-	kuis := api.Group("/kuis")
+	certif := api.Group("/certif")
 	{
-		kuis.GET("/", mw.JWT(constants.OWNER), kuisHandler.GetAllKuis)
-		kuis.GET("/:id", mw.JWT(constants.OWNER), kuisHandler.GetKuisById)
-		kuis.POST("/", mw.JWT(constants.OWNER), kuisHandler.AddKuis)
-		kuis.POST("/stats", mw.JWT(constants.OWNER), kuisHandler.AddStatsKuis)
-		kuis.GET("/stats", mw.JWT(constants.OWNER), kuisHandler.GetStatsByUserId)
-		kuis.DELETE("/:id", mw.JWT(constants.OWNER), kuisHandler.DeleteKuis)
+		certif.GET("/", mw.JWT(constants.OWNER), certifHandler.GetAllCertif)
+		certif.GET("/:id", mw.JWT(constants.OWNER), certifHandler.GetCertifById)
+		certif.DELETE("/:id", mw.JWT(constants.OWNER), certifHandler.DeleteCertif)
 	}
 
 	router.NoRoute(func(ctx *gin.Context) {

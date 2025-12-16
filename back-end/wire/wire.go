@@ -9,8 +9,8 @@ import (
 	"github.com/google/wire"
 
 	"github.com/devanadindra/portfolio/back-end/database"
+	"github.com/devanadindra/portfolio/back-end/domains/certif"
 	"github.com/devanadindra/portfolio/back-end/domains/kamus"
-	"github.com/devanadindra/portfolio/back-end/domains/kuis"
 	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
@@ -43,9 +43,9 @@ var skillSet = wire.NewSet(
 	skill.NewHandler,
 )
 
-var kuisSet = wire.NewSet(
-	kuis.NewService,
-	kuis.NewHandler,
+var certifSet = wire.NewSet(
+	certif.NewService,
+	certif.NewHandler,
 )
 
 func initializeDependency(config *config.Config) (*routes.Dependency, error) {
@@ -59,7 +59,7 @@ func initializeDependency(config *config.Config) (*routes.Dependency, error) {
 		userSet,
 		kamusSet,
 		skillSet,
-		kuisSet,
+		certifSet,
 	)
 
 	return nil, nil
