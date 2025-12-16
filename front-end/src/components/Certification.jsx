@@ -21,7 +21,7 @@ export function Certification() {
         return res.json();
       })
       .then((res) => {
-        console.log("API /certif/ response:", res.data?.data ?? []);  
+        console.log("API /certif/ response:", res.data?.data ?? []);
         setCertifData(res.data?.data ?? []);
       })
       .catch(() => setError(true));
@@ -51,39 +51,45 @@ export function Certification() {
               >
                 Certification
               </h4>
-              <ReactSwipe className="carousel" ref={reactSwipeEl}>
-                {certifData?.map((certificate, index) => (
-                  <div className="flex justify-center pt-10" key={index}>
-                    <div
-                      className="lg:w-[50%] w-[100%] md:w-[70%] sm:w-[70%] xs:w-[70%]"
-                      data-aos="zoom-in"
-                      data-aos-delay="500"
-                      data-aos-duration="800"
-                      data-aos-offset="300"
-                    >
-                      {certificate.certif_link ? (
-                        <a
-                          href={certificate.certif_link}
-                          target="_blank"
-                          rel="noreferrer"
+                {certifData && certifData.length > 0 && (
+                  <ReactSwipe
+                    key={certifData.length}
+                    className="carousel"
+                    ref={reactSwipeEl}
+                  >
+                    {certifData?.map((certificate, index) => (
+                      <div className="flex justify-center pt-10" key={index}>
+                        <div
+                          className="lg:w-[50%] w-[100%] md:w-[70%] sm:w-[70%] xs:w-[70%]"
+                          data-aos="zoom-in"
+                          data-aos-delay="500"
+                          data-aos-duration="800"
+                          data-aos-offset="300"
                         >
-                          <img
-                            className="certif_img rounded-2xl bg-contain cursor-pointer hover:scale-105 transition-transform duration-300"
-                            src={`${API_BASE}${certificate.img_url}`}
-                            alt={certificate.name}
-                          />
-                        </a>
-                      ) : (
-                        <img
-                          className="rounded-2xl bg-contain cursor-default"
-                          src={`${API_BASE}${certificate.img_url}`}
-                          alt={certificate.name}
-                        />
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </ReactSwipe>
+                          {certificate.certif_link ? (
+                            <a
+                              href={certificate.certif_link}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <img
+                                className="certif_img rounded-2xl bg-contain cursor-pointer hover:scale-105 transition-transform duration-300"
+                                src={`${API_BASE}${certificate.img_url}`}
+                                alt={certificate.name}
+                              />
+                            </a>
+                          ) : (
+                            <img
+                              className="rounded-2xl bg-contain cursor-default"
+                              src={`${API_BASE}${certificate.img_url}`}
+                              alt={certificate.name}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </ReactSwipe>
+                )}
               <div className="relative">
                 <div
                   onClick={() => reactSwipeEl.current.prev()}

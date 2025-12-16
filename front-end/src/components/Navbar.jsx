@@ -9,9 +9,15 @@ function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Fungsi baru untuk menutup menu
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="animate__animated animate__fadeInDown animate__fast Navbar-header fixed top-0 left-0 w-full bg-white shadow-md z-50">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      {/* Container ini diperbaiki responsivitasnya dari jawaban sebelumnya. */}
+      <div className="mx-auto px-4 sm:px-6 lg:px-8"> 
         <div className="flex h-16 items-center justify-between">
           <div className="block md:hidden lg:order-last lg:h-full">
             <button
@@ -99,51 +105,63 @@ function Navbar() {
           </div>
         </div>
       </div>
-      {/* Dropdown Menu */}
+      
+      {/* Dropdown Menu (Mobile View) */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        // Menambahkan w-full px-4 untuk responsivitas yang lebih baik
+        <div className="md:hidden w-full px-4">
           <nav aria-label="Global">
             <ul className="flex flex-col items-center gap-6 text-sm pb-3">
               <li>
+                {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
                   href="#Home"
+                  onClick={closeMenu} 
                 >
                   {" "}
                   Home{" "}
                 </a>
               </li>
               <li>
+                {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
                   href="#About"
+                  onClick={closeMenu}
                 >
                   {" "}
                   About{" "}
                 </a>
               </li>
               <li>
+                {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
                   href="#certifications"
+                  onClick={closeMenu}
                 >
                   {" "}
                   Certifications{" "}
                 </a>
               </li>
               <li>
+                {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
                   href="#Projects"
+                  onClick={closeMenu}
                 >
                   {" "}
                   Projects{" "}
                 </a>
               </li>
               <li>
+                {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
                   href="#ContactForm"
+                  onClick={closeMenu}
                 >
                   {" "}
                   Contact{" "}
