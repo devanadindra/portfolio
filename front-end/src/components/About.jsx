@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 import { API_BASE } from "../utils/constants";
 
-export function About() {
-    const [aboutData, setAboutData] = useState(null);
+export function About({ personalData }) {
   const [isLargeScreen, setIsLargeScreen] = useState(true);
   const educationSteps = [
     { label: "SD Al Furqan Jember", date: "2011 - 2017", status: "completed" },
@@ -23,28 +22,6 @@ export function About() {
         setIsLargeScreen(false);
       }
     };
-
-      useEffect(() => {
-        fetch(`${API_BASE}/user/about`)
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error("Not Found");
-            }
-            return res.json();
-          })
-          .then((data) => {
-            setAboutData(data);
-            setLoading(false);
-          })
-          .catch(() => {
-            setError(true);
-            setLoading(false);
-          });
-              AOS.init({
-                duration: 1000,
-                easing: 'ease-in-out',
-              });
-      }, []);
 
     handleResize();
 
@@ -78,7 +55,7 @@ export function About() {
               data-aos-delay="800"
               data-aos-duration="800"
             >
-              {aboutData?.Biography}
+              {personalData?.Biography}
             </p>
           </div>
 
@@ -121,7 +98,7 @@ export function About() {
                 <FaGithub />
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/deva-nadindra-pramudya-2a6b202b8/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -172,8 +149,10 @@ export function About() {
                   key={index}
                   className="flex-1 flex flex-col items-center text-center relative"
                 >
+                  {/* Line between steps */}
                   {educationSteps.length > 1 && (
                     <>
+                      {/* Right line */}
                       {index !== educationSteps.length - 1 && (
                         <div
                           className={`absolute top-4 left-[50%] w-[100%] h-1 z-0 ${
@@ -364,12 +343,12 @@ export function About() {
           data-aos-duration="800"
         >
           <div className="skill-set__flex">
-            {aboutData.skills.map((skill, idx) => (
+            {personalData?.Skills?.map((skill, idx) => (
               <ul className="skill-set__list" key={idx}>
                 <li className="skill-set__item">
                   <div className="skill-set__icon">
                     <img
-                      src={`src/assets/${skill.img_url}`}
+                      src={`${API_BASE}${skill.ImgUrl}`}
                       alt={skill.Name}
                     />
                   </div>

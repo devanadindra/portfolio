@@ -1,5 +1,5 @@
 import "animate.css";
-import { useEffect, useState } from "react";
+import { API_BASE } from "../utils/constants";
 
 function Home({ personalData }) {
   const handleMouseEnter = (e) => {
@@ -20,7 +20,7 @@ function Home({ personalData }) {
           >
             <img
               alt=""
-              src={`/src/assets/${personalData?.img_url}`}
+              src={`${API_BASE}${personalData?.ImgUrl}`}
               className="rounded-3xl w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl max-h-full object-contain transition-transform duration-300 ease-in-out"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -36,7 +36,7 @@ function Home({ personalData }) {
               Hi Everyone 👋🏻, I'm
             </h2>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#8c2b7a]">
-              {personalData?.name}
+              {personalData?.Name}
             </h2>
             <p className="mt-4 text-sm sm:text-base text-gray-600 text-justify">
               am a passionate and aspiring Junior Full Stack Developer who is
@@ -52,9 +52,9 @@ function Home({ personalData }) {
               <span className="garis h-px flex-1 bg-black"></span>
             </span>
             <p className="mt-2 text-sm sm:text-base text-gray-600">
-              NIM : {personalData?.nim} <br />
-              Major : {personalData?.major} <br />
-              Faculty : {personalData?.faculty}
+              NIM : {personalData?.Nim} <br />
+              Major : {personalData?.Major} <br />
+              Faculty : {personalData?.Faculty}
             </p>
           </div>
         </div>

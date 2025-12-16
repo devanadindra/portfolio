@@ -8,12 +8,13 @@ import Footer from './components/Footer';
 import './style/index.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { API_BASE } from "../utils/constants";
+import { API_BASE } from "./utils/constants";
 
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [personalData, setPersonalData] = useState(null);
 
   useEffect(() => {
     fetch(`${API_BASE}/user/about`)
@@ -24,16 +25,18 @@ function App() {
         return res.json();
       })
       .then((data) => {
+        console.log("API /user/about response:", data.data);
+        setPersonalData(data.data);
         setLoading(false);
       })
       .catch(() => {
         setError(true);
         setLoading(false);
       });
-          AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-          });
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+    });
   }, []);
 
   if (loading) {
@@ -45,7 +48,6 @@ function App() {
   }
 
   if (error) {
-    // Menampilkan pesan error jika API tidak ditemukan
     return (
       <div className="text-center text-red-500">
         <p>Not Found</p>
@@ -56,9 +58,9 @@ function App() {
   return (
     <div className="m-0 p-0">
       <Navbar />
-      <Home />
-      <About />
-      <Certification/>
+      <Home personalData={personalData} />
+      <About personalData={personalData} />
+      <Certification />
       <ContactForm />
       <Footer />
     </div>

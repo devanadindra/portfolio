@@ -1,10 +1,38 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useRef } from "react";
+import { useEffect, useState } from 'react';
 import ReactSwipe from "react-swipe";
 import CertifWaveUP from "../waves/CertifWaveUP";
+import { API_BASE } from "../utils/constants";
 
-export function Certification({ personalData }) {
+export function Certification() {
+  const [certifData, setCertifData] = useState(null);
+  const [error, setError] = useState(false);
   const reactSwipeEl = useRef(null);
+
+useEffect(() => {
+  fetch(`${API_BASE}/certif/`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Not Found");
+      }
+      return res.json();
+    })
+    .then((res) => {
+      setCertifData(res.data?.data ?? []);
+    })
+    .catch(() => {
+      setError(true);
+    });
+}, []);
+
+
+  if (error) {
+    return (
+      <div className="text-center text-red-500">
+        <p>Not Found</p>
+      </div>
+    );
+  }
 
   return (
     <section className="certificate">
@@ -23,7 +51,7 @@ export function Certification({ personalData }) {
                 Certification
               </h4>
               <ReactSwipe className="carousel" ref={reactSwipeEl}>
-                {personalData.certificates.map((certificate, index) => (
+                {certifData?.map((certificate, index) => (
                   <div className="flex justify-center pt-10" key={index}>
                     <div
                       className="lg:w-[50%] w-[100%] md:w-[70%] sm:w-[70%] xs:w-[70%]"
@@ -32,7 +60,7 @@ export function Certification({ personalData }) {
                       data-aos-duration="800"
                       data-aos-offset="300"
                     >
-                      {certificate.certif_link ?  (
+                      {certificate.certif_link ? (
                         <a
                           href={certificate.certif_link}
                           target="_blank"
