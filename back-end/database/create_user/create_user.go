@@ -58,8 +58,9 @@ $$;
 		GRANT SELECT ON about TO %s;
 		GRANT SELECT ON skills TO %s;
 		GRANT SELECT ON projects TO %s;
+		GRANT SELECT ON certificate TO %s;
 		GRANT SELECT ON project_images TO %s;
-	`, visitorUser, visitorUser, visitorUser, visitorUser)
+	`, visitorUser, visitorUser, visitorUser, visitorUser, visitorUser)
 
 	if err := db.Exec(grantCustomerSQL).Error; err != nil {
 		log.Fatal("Failed to grant privileges to visitors_app:", err)

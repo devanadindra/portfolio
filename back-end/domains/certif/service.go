@@ -9,7 +9,6 @@ import (
 	apierror "github.com/devanadindra/portfolio/back-end/utils/api-error"
 	"github.com/devanadindra/portfolio/back-end/utils/config"
 	"github.com/devanadindra/portfolio/back-end/utils/constants"
-	contextUtil "github.com/devanadindra/portfolio/back-end/utils/context"
 	"github.com/devanadindra/portfolio/back-end/utils/dbselector"
 	"gorm.io/gorm"
 )
@@ -40,11 +39,6 @@ func (s *service) GetAllCertif(ctx context.Context, input GetAllCertifReq, filte
 	var total int64
 	var certifList []Certificate
 
-	token, err := contextUtil.GetTokenClaims(ctx)
-	if err != nil {
-		return nil, 0, err
-	}
-
 	db, err := s.dbSelector.GetDBByRole(ctx)
 	if err != nil {
 		return nil, 0, err
@@ -60,7 +54,6 @@ func (s *service) GetAllCertif(ctx context.Context, input GetAllCertifReq, filte
 
 	if err := query.
 		Order(fmt.Sprintf("%s %s", filter.OrderBy, filter.SortOrder)).
-		Preload("StatsKuis", "user_id = ?", token.Claims.UserID).
 		Limit(int(filter.Limit)).
 		Offset(int(offset)).
 		Find(&certifList).Error; err != nil {

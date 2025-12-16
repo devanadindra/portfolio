@@ -78,7 +78,7 @@ func NewDependency(
 
 	certif := api.Group("/certif")
 	{
-		certif.GET("/", mw.JWT(constants.OWNER), certifHandler.GetAllCertif)
+		certif.GET("/", mw.OptionalJWT(constants.OWNER), certifHandler.GetAllCertif)
 		certif.GET("/:id", mw.JWT(constants.OWNER), certifHandler.GetCertifById)
 		certif.DELETE("/:id", mw.JWT(constants.OWNER), certifHandler.DeleteCertif)
 	}
