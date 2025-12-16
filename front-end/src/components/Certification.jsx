@@ -9,22 +9,23 @@ export function Certification() {
   const [error, setError] = useState(false);
   const reactSwipeEl = useRef(null);
 
-useEffect(() => {
-  fetch(`${API_BASE}/certif/`)
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error("Not Found");
-      }
-      return res.json();
-    })
-    .then((res) => {
-      setCertifData(res.data?.data ?? []);
-    })
-    .catch(() => {
-      setError(true);
-    });
-}, []);
+  const fetchedRef = useRef(false);
 
+  useEffect(() => {
+    if (fetchedRef.current) return;
+    fetchedRef.current = true;
+
+    fetch(`${API_BASE}/certif/`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Error");
+        return res.json();
+      })
+      .then((res) => {
+        console.log("API /certif/ response:", res.data?.data ?? []);  
+        setCertifData(res.data?.data ?? []);
+      })
+      .catch(() => setError(true));
+  }, []);
 
   if (error) {
     return (
@@ -35,7 +36,7 @@ useEffect(() => {
   }
 
   return (
-    <section className="certificate">
+    <section className="certificate min-h-screen">
       <CertifWaveUP />
       <div className="pb-10 bg-[#8c2b7a]">
         <div>
@@ -68,14 +69,14 @@ useEffect(() => {
                         >
                           <img
                             className="certif_img rounded-2xl bg-contain cursor-pointer hover:scale-105 transition-transform duration-300"
-                            src={`/src/assets/${certificate?.img_url}`}
+                            src={`${API_BASE}${certificate.img_url}`}
                             alt={certificate.name}
                           />
                         </a>
                       ) : (
                         <img
                           className="rounded-2xl bg-contain cursor-default"
-                          src={`/src/assets/${certificate?.img_url}`}
+                          src={`${API_BASE}${certificate.img_url}`}
                           alt={certificate.name}
                         />
                       )}

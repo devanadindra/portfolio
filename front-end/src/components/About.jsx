@@ -34,14 +34,14 @@ export function About({ personalData }) {
   return (
     <section
       id="About"
-      className="pt-4 About-container h-screen mx-auto max-w-screen-xl"
+      className="about pt-4 About-container min-h-screen mx-auto max-w-screen-xl"
     >
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-        <div className="flex flex-col md:flex-row gap-[200px]">
+        <div className="flex flex-col md:flex-row gap-[50px] md:gap-[200px]">
           {/* About Me */}
           <div className="md:w-1/2">
             <h2
-              className="text-3xl font-bold sm:text-4xl text-[#8c2b7a]"
+              className="text-3xl font-bold sm:text-4xl text-[#8c2b7a] aos-init"
               data-aos="fade-down-right"
               data-aos-delay="600"
               data-aos-duration="800"
@@ -50,7 +50,7 @@ export function About({ personalData }) {
               About Me 📌
             </h2>
             <p
-              className="mt-4 text-gray-600 text-justify"
+              className="mt-4 text-gray-600 text-justify aos-init"
               data-aos="fade-right"
               data-aos-delay="800"
               data-aos-duration="800"
@@ -216,7 +216,7 @@ export function About({ personalData }) {
                   <p
                     className={`mt-2 text-sm ${
                       step.status === "completed"
-                        ? "text-white"
+                        ? "text-gray-700"
                         : "text-gray-500"
                     }`}
                   >
@@ -307,7 +307,7 @@ export function About({ personalData }) {
                   <p
                     className={`mt-2 text-sm max-w-[200px] break-words ${
                       step.status === "completed"
-                        ? "text-white"
+                        ? "text-gray-700"
                         : "text-gray-500"
                     }`}
                   >

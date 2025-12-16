@@ -11,7 +11,7 @@ function Home({ personalData }) {
   };
 
   return (
-    <section id="Home" className="pt-10 h-screen">
+    <section id="Home" className="pt-10 min-h-screen">
       <div className="mt-4 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
           <div

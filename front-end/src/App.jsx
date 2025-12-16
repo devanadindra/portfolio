@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import React, { useRef } from "react";
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -16,7 +17,12 @@ function App() {
   const [error, setError] = useState(false);
   const [personalData, setPersonalData] = useState(null);
 
+  const fetchedRef = useRef(false);
+
   useEffect(() => {
+    if (fetchedRef.current) return;
+    fetchedRef.current = true;
+
     fetch(`${API_BASE}/user/about`)
       .then((res) => {
         if (!res.ok) {
@@ -25,7 +31,6 @@ function App() {
         return res.json();
       })
       .then((data) => {
-        console.log("API /user/about response:", data.data);
         setPersonalData(data.data);
         setLoading(false);
       })
@@ -56,7 +61,7 @@ function App() {
   }
 
   return (
-    <div className="m-0 p-0">
+    <div className="overflow-x-hidden m-0 p-0">
       <Navbar />
       <Home personalData={personalData} />
       <About personalData={personalData} />

@@ -35,7 +35,7 @@ function Navbar() {
             </button>
           </div>
           <div className="md:flex md:items-center md:gap-12">
-            <a className="block text-teal-600" href="#">
+            <a className="block text-teal-600 cursor-pointer" href="#">
               <span className="sr-only">Home</span>
               <span className="font-serif text-[#8c2b7a] font-bold">
                 devanadindra
