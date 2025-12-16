@@ -370,27 +370,27 @@ export function About() {
                   <div className="skill-set__icon">
                     <img
                       src={`src/assets/${skill.img_url}`}
-                      alt={skill.skill_name}
+                      alt={skill.Name}
                     />
                   </div>
                   <div className="skill-set__detail">
                     <div className="skill-set__meta">
                       <div className="skill-set__name">
                         <h4 className="small-title small-title--skill">
-                          {skill.skill_name}
+                          {skill.Name}
                         </h4>
                         <p className="skill-set__year">
-                          {skill.experience}
-                          {skill.period}
+                          {skill.Experience}
+                          {skill.Period}
                         </p>
                       </div>
                       <p className="small-title small-title--skill skill-set__high">
-                        {skill.skill_ratio}
+                        {skill.Ratio}
                         <span className="skill-set__ratio">%</span>
                       </p>
                     </div>
                     <div
-                      className={`skill-set__bar p${skill.skill_ratio} js-scroll`}
+                      className={`skill-set__bar p${skill.Ratio} js-scroll`}
                     ></div>
                   </div>
                 </li>
