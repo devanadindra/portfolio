@@ -31,6 +31,7 @@ type Service interface {
 	ResetPasswordSubmit(ctx context.Context, req ResetPasswordSubmitReq) (err error)
 	ResetPassword(ctx context.Context, req ResetPasswordReq) (res *ResetPasswordRes, err error)
 	AddAvatar(ctx context.Context, req AvatarReq) (string, error)
+	GetAbout(ctx context.Context) (*AboutRes, error)
 }
 
 type service struct {
@@ -291,4 +292,30 @@ func (s *service) ResetPasswordSubmit(ctx context.Context, req ResetPasswordSubm
 	default:
 		return nil
 	}
+}
+
+func (s *service) GetAbout(ctx context.Context) (*AboutRes, error) {
+	db, err := s.dbSelector.GetDBByRole(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	res := &AboutRes{}
+
+	var about About
+	err = db.WithContext(ctx).
+		First(&about).Error
+	if err != nil {
+		return nil, err
+	}
+
+	res.Name = about.Name
+	res.Nim = about.Nim
+	res.Major = about.Major
+	res.Faculty = about.Faculty
+	res.Biography = about.Biography
+	res.Slogan = about.Slogan
+	res.ImgUrl = about.ImgUrl
+
+	return res, nil
 }

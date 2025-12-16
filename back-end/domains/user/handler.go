@@ -20,6 +20,7 @@ type Handler interface {
 	AddAvatar(ctx *gin.Context)
 	ResetPassword(ctx *gin.Context)
 	ResetPasswordSubmit(ctx *gin.Context)
+	GetAbout(ctx *gin.Context)
 }
 
 type handler struct {
@@ -247,4 +248,14 @@ func (h *handler) ResetPasswordSubmit(ctx *gin.Context) {
 	}
 
 	respond.Success(ctx, http.StatusOK, gin.H{"message": "Password reset successfully"})
+}
+
+func (h *handler) GetAbout(ctx *gin.Context) {
+	res, err := h.service.GetAbout(ctx)
+	if err != nil {
+		respond.Error(ctx, apierror.FromErr(err))
+		return
+	}
+
+	respond.Success(ctx, http.StatusOK, res)
 }

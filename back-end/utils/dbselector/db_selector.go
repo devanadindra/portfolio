@@ -2,10 +2,8 @@ package dbselector
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/devanadindra/portfolio/back-end/database"
-	apierror "github.com/devanadindra/portfolio/back-end/utils/api-error"
 	"github.com/devanadindra/portfolio/back-end/utils/constants"
 	contextUtil "github.com/devanadindra/portfolio/back-end/utils/context"
 	"gorm.io/gorm"
@@ -27,15 +25,15 @@ func NewDBService(OwnerDB *database.OwnerDB, VisitorsDB *database.VisitorsDB) *D
 func (s *DBService) GetDBByRole(ctx context.Context) (*gorm.DB, error) {
 	token, err := contextUtil.GetTokenClaims(ctx)
 	if err != nil {
-		return nil, apierror.NewWarn(http.StatusUnauthorized)
+		return s.VisitorsDB.DB, nil
 	}
 
 	switch token.Claims.Role {
-	case constants.ADMIN:
+	case constants.OWNER:
 		return s.OwnerDB.DB, nil
-	case constants.CUSTOMER:
+	case constants.VISITORS:
 		return s.VisitorsDB.DB, nil
 	default:
-		return nil, apierror.NewWarn(http.StatusUnauthorized)
+		return s.VisitorsDB.DB, nil
 	}
 }

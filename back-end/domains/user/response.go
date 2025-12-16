@@ -23,3 +23,13 @@ type LogoutRes struct {
 type ResetPasswordRes struct {
 	Email string
 }
+
+type AboutRes struct {
+	Name      string
+	Nim       string
+	Major     string
+	Faculty   string
+	Biography string
+	Slogan    string
+	ImgUrl    string
+}
