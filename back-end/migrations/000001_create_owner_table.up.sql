@@ -59,5 +59,5 @@ VALUES (
     'School of Computer Science',
     'Born in 2004 in Madiun City, I completed my education at SMKN 1 Madiun before continuing my studies at Bina Nusantara University, majoring in Computer Science. During my studies, I studied programming, software development, and artificial intelligence. I believe that technology is the solution to life challenges. With a passion for learning and innovation, I continue to hone my skills in order to contribute to creating positive change.',
     'I''m a Computer Science student at Binus University.',
-    'uploads/personal/profile_1.jpeg'
+    '/uploads/personal/profile_1.jpeg'
 );

@@ -13,8 +13,8 @@ const ProjectWaveUP = () => {
     >
       <defs>
         <linearGradient id="gradient3" x1="90%" y1="20%" x2="10%" y2="80%">
-          <stop offset="5%" stopColor="#15803c" />
-          <stop offset="95%" stopColor="#15803d" />
+          <stop offset="5%" stopColor="#8c2b7a" />
+          <stop offset="95%" stopColor="#8c2b7a" />
         </linearGradient>
       </defs>
       <style>

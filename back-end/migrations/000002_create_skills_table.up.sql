@@ -20,7 +20,7 @@ VALUES
         60,
         9,
         'MONTHS',
-        'uploads/skill/9.svg'
+        '/uploads/skill/9.svg'
     ),
     (
         'd0299dd2-8d63-4562-9294-a916b7e1e82e',
@@ -28,7 +28,7 @@ VALUES
         40,
         6,
         'MONTHS',
-        'uploads/skill/10.svg'
+        '/uploads/skill/10.svg'
     ),
     (
         'd0299dd2-8d63-4562-9294-a916b7e1e82e',
@@ -36,5 +36,5 @@ VALUES
         90,
         2,
         'YEARS',
-        'uploads/skill/11.svg'
+        '/uploads/skill/11.svg'
     );

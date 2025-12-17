@@ -13,7 +13,7 @@ INSERT INTO
 VALUES
     (
         'Data Structure Certificate',
-        'uploads/certificate/5.jpg'
+        '/uploads/certificate/5.jpg'
     ),
-    ('C Language', 'uploads/certificate/6.jpg'),
-    ('Certificate', 'uploads/certificate/7.jpg');
+    ('C Language', '/uploads/certificate/6.jpg'),
+    ('Certificate', '/uploads/certificate/7.jpg');
