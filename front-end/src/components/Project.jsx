@@ -4,7 +4,7 @@ import ReactSwipe from "react-swipe";
 import { API_BASE } from "../utils/constants";
 
 export function Project() {
-  const [certifData, setCertifData] = useState(null);
+  const [projectData, setProjectData] = useState(null);
   const [error, setError] = useState(false);
   const reactSwipeEl = useRef(null);
 
@@ -23,8 +23,7 @@ export function Project() {
               return res.json();
             })
             .then((res) => {
-              console.log("API /certif/ response:", res.data?.data ?? []);
-              setCertifData(res.data?.data ?? []);
+              setProjectData(res.data?.data ?? []);
             })
             .catch(() => setError(true));
         }
@@ -45,7 +44,8 @@ export function Project() {
   if (error) {
     return (
       <div className="text-center text-red-500">
-        <p>Not Found</p>
+        <h4 className="font-bold text-[#8c2b7a] text-xl top-10 text-center md:text-2xl lg:text-4xl aos-init" data-aos="fade-down" data-aos-delay="300" data-aos-duration="600" data-aos-offset="300">My Projects</h4>
+        <p>Failed to load projects. Please try again later.</p>
       </div>
     );
   }
@@ -57,13 +57,13 @@ export function Project() {
           <div className="flex flex-wrap">
             <div className="w-full">
               <h4 className="font-bold text-[#8c2b7a] text-xl top-10 text-center md:text-2xl lg:text-4xl aos-init" data-aos="fade-down" data-aos-delay="300" data-aos-duration="600" data-aos-offset="300">My Projects</h4>
-              {certifData && certifData.length > 0 && (
+              {projectData && projectData.length > 0 && (
                 <ReactSwipe
-                  key={certifData.length}
+                  key={projectData.length}
                   className="carousel"
                   ref={reactSwipeEl}
                 >
-                  {certifData?.map((certificate, index) => (
+                  {projectData?.map((certificate, index) => (
                     <div className="flex justify-center pt-10" key={index}>
                       <div
                         className="lg:w-[50%] w-[100%] md:w-[70%] sm:w-[70%] xs:w-[70%]"
