@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
+import Maintenance from './components/Maintenance';
 import { Project } from './components/Project';
 import { Certification } from './components/Certification';
 import ContactForm from "./components/ContactForm"
@@ -55,9 +56,7 @@ function App() {
 
   if (error) {
     return (
-      <div className="text-center text-red-500">
-        <p>Not Found</p>
-      </div>
+      <Maintenance />
     );
   }
 

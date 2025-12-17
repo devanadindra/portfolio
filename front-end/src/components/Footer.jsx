@@ -151,7 +151,7 @@ function Footer() {
                   </li>
 
                   <li>
-                    <a href="#Projects" className="font-contact text-gray-700 transition hover:opacity-75">Projects</a>
+                    <a href="#projects" className="font-contact text-gray-700 transition hover:opacity-75">Projects</a>
                   </li>
 
                   <li>

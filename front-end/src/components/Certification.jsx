@@ -47,22 +47,21 @@ export function Certification() {
   if (error) {
     return (
       <div className="text-center text-red-500">
-        <h4
-          className="font-bold uppercase text-white text-xl text-center md:text-2xl lg:text-4xl"
-          data-aos="fade-down"
-          data-aos-delay="500"
-          data-aos-duration="800"
-          data-aos-offset="500"
-        >
-          Certification
-        </h4>
-        <p>Failed to load certifications. Please try again later.</p>
+              <h4
+                className="font-bold uppercase text-white text-xl text-center md:text-2xl lg:text-4xl"
+                data-aos="fade-down"
+                data-aos-delay="500"
+                data-aos-duration="800"
+                data-aos-offset="500"
+              >
+                Certification
+              </h4>
       </div>
     );
   }
 
   return (
-    <section ref={sectionRef} className="certificate min-h-screen">
+    <section ref={sectionRef} className="min-h-screen">
       <CertifWaveUP />
       <div className="pb-10 bg-[#8c2b7a]">
         <div>
