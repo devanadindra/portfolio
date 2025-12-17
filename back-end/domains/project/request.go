@@ -1,4 +1,4 @@
-package kamus
+package project
 
 import "mime/multipart"
 
@@ -12,8 +12,7 @@ type DeleteKamusReq struct {
 	ID string `json:"id" binding:"required"`
 }
 
-type GetAllKamusReq struct {
-	Keyword string
-	Page    int
-	Limit   int
+type GetAllProjectsReq struct {
+	Page  int64
+	Limit int64
 }

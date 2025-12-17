@@ -10,7 +10,7 @@ import (
 
 	"github.com/devanadindra/portfolio/back-end/database"
 	"github.com/devanadindra/portfolio/back-end/domains/certif"
-	"github.com/devanadindra/portfolio/back-end/domains/kamus"
+	"github.com/devanadindra/portfolio/back-end/domains/project"
 	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
@@ -33,9 +33,9 @@ var userSet = wire.NewSet(
 	user.NewHandler,
 )
 
-var kamusSet = wire.NewSet(
-	kamus.NewService,
-	kamus.NewHandler,
+var projectSet = wire.NewSet(
+	project.NewService,
+	project.NewHandler,
 )
 
 var skillSet = wire.NewSet(
@@ -57,7 +57,7 @@ func initializeDependency(config *config.Config) (*routes.Dependency, error) {
 		middlewares.NewMiddlewares,
 		routes.NewDependency,
 		userSet,
-		kamusSet,
+		projectSet,
 		skillSet,
 		certifSet,
 	)

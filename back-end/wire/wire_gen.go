@@ -9,7 +9,7 @@ package wireinject
 import (
 	"github.com/devanadindra/portfolio/back-end/database"
 	"github.com/devanadindra/portfolio/back-end/domains/certif"
-	"github.com/devanadindra/portfolio/back-end/domains/kamus"
+	"github.com/devanadindra/portfolio/back-end/domains/project"
 	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
@@ -40,13 +40,13 @@ func initializeDependency(config2 *config.Config) (*routes.Dependency, error) {
 	middlewaresMiddlewares := middlewares.NewMiddlewares(config2, service)
 	validate := validator.New()
 	handler := user.NewHandler(service, validate)
-	kamusService := kamus.NewService(config2, dbService, visitorsDB, ownerDB)
-	kamusHandler := kamus.NewHandler(kamusService, validate)
+	projectService := project.NewService(config2, dbService, visitorsDB, ownerDB)
+	projectHandler := project.NewHandler(projectService, validate)
 	skillService := skill.NewService(config2, dbService, visitorsDB, ownerDB)
 	skillHandler := skill.NewHandler(skillService, validate)
 	certifService := certif.NewService(config2, dbService, visitorsDB, ownerDB)
 	certifHandler := certif.NewHandler(certifService, validate)
-	dependency := routes.NewDependency(config2, middlewaresMiddlewares, ownerDB, visitorsDB, handler, kamusHandler, skillHandler, certifHandler)
+	dependency := routes.NewDependency(config2, middlewaresMiddlewares, ownerDB, visitorsDB, handler, projectHandler, skillHandler, certifHandler)
 	return dependency, nil
 }
 
@@ -58,7 +58,7 @@ var dbSelectorSet = wire.NewSet(dbselector.NewDBService)
 
 var userSet = wire.NewSet(user.NewService, user.NewHandler)
 
-var kamusSet = wire.NewSet(kamus.NewService, kamus.NewHandler)
+var projectSet = wire.NewSet(project.NewService, project.NewHandler)
 
 var skillSet = wire.NewSet(skill.NewService, skill.NewHandler)
 

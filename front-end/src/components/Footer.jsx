@@ -33,8 +33,8 @@ function Footer() {
               </p>
 
               <ul className="font-contact mt-8 space-y-1 text-sm text-gray-700">
-                <li>Monday to Friday: 10am - 5pm</li>
-                <li>Weekend: 10am - 3pm</li>
+                <li>📍 Kota Malang, Jawa Timur</li>
+                <li>📍 Faniah Wendit Regency</li>
               </ul>
 
               <ul className="font-contact mt-8 flex gap-6">
@@ -135,45 +135,27 @@ function Footer() {
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <p className="font-medium text-[#8c2b7a]">Services</p>
+                <p className="font-medium text-[#8c2b7a]">Section</p>
 
                 <ul className="mt-6 space-y-4 text-sm">
                   <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+                    <a href="#Home" className="font-contact text-gray-700 transition hover:opacity-75">Home</a>
                   </li>
 
                   <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> Company Review </a>
+                    <a href="#About" className="font-contact text-gray-700 transition hover:opacity-75">About</a>
                   </li>
 
                   <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                    <a href="#certifications" className="font-contact text-gray-700 transition hover:opacity-75">Certificate</a>
                   </li>
 
                   <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> HR Consulting </a>
+                    <a href="#Projects" className="font-contact text-gray-700 transition hover:opacity-75">Projects</a>
                   </li>
 
                   <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <p className="font-medium text-[#8c2b7a]">Company</p>
-
-                <ul className="mt-6 space-y-4 text-sm">
-                  <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> About </a>
-                  </li>
-
-                  <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> Meet the Team </a>
-                  </li>
-
-                  <li>
-                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                    <a href="#ContactForm" className="font-contact text-gray-700 transition hover:opacity-75">Contact</a>
                   </li>
                 </ul>
               </div>
@@ -182,20 +164,6 @@ function Footer() {
 
           <div className="mt-12 border-t border-gray-100 pt-12">
             <div className="sm:flex sm:items-center sm:justify-between">
-              <ul className="flex flex-wrap gap-4 text-xs">
-                <li>
-                  <a href="#" className="text-gray-500 transition hover:opacity-75"> Terms & Conditions </a>
-                </li>
-
-                <li>
-                  <a href="#" className="text-gray-500 transition hover:opacity-75"> Privacy Policy </a>
-                </li>
-
-                <li>
-                  <a href="#" className="text-gray-500 transition hover:opacity-75"> Cookies </a>
-                </li>
-              </ul>
-
               <p className="mt-8 text-xs text-gray-500 sm:mt-0">
                 &copy; 2025. Deva Nadindra Pramudya. All rights reserved.
               </p>

@@ -7,7 +7,7 @@ import (
 
 	"github.com/devanadindra/portfolio/back-end/database"
 	"github.com/devanadindra/portfolio/back-end/domains/certif"
-	"github.com/devanadindra/portfolio/back-end/domains/kamus"
+	"github.com/devanadindra/portfolio/back-end/domains/project"
 	"github.com/devanadindra/portfolio/back-end/domains/skill"
 	"github.com/devanadindra/portfolio/back-end/domains/user"
 	"github.com/devanadindra/portfolio/back-end/middlewares"
@@ -23,7 +23,7 @@ func NewDependency(
 	OwnerDB *database.OwnerDB,
 	VisitorsDB *database.VisitorsDB,
 	userHandler user.Handler,
-	kamusHandler kamus.Handler,
+	projectHandler project.Handler,
 	skillHandler skill.Handler,
 	certifHandler certif.Handler,
 ) *Dependency {
@@ -64,12 +64,11 @@ func NewDependency(
 		})
 	}
 
-	kamus := api.Group("/kamus")
+	project := api.Group("/project")
 	{
-		kamus.GET("/", mw.JWT(constants.OWNER), kamusHandler.GetKamus)
-		kamus.GET("/all", mw.JWT(constants.OWNER), kamusHandler.GetAllKamus)
-		kamus.POST("/", mw.JWT(constants.OWNER), kamusHandler.AddKamus)
-		kamus.DELETE("/:id", mw.JWT(constants.OWNER), kamusHandler.DeleteKamus)
+		project.GET("/", mw.JWT(constants.OWNER), projectHandler.GetProjects)
+		project.GET("/all", mw.JWT(constants.OWNER), projectHandler.GetAllProjects)
+		project.DELETE("/:id", mw.JWT(constants.OWNER), projectHandler.DeleteProject)
 	}
 
 	// Skill := api.Group("/skill")
