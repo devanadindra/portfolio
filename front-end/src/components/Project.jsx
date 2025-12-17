@@ -51,7 +51,7 @@ export function Project() {
   }
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen">
+    <section ref={sectionRef} id="projects" className="relative min-h-screen">
       <div className="pb-10">
         <div>
           <div className="flex flex-wrap">

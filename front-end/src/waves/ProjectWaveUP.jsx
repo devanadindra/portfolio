@@ -49,7 +49,6 @@ const ProjectWaveUP = () => {
         fillOpacity="1"
         className="path-0"
         transform="rotate(-180 720 100)"
-        id="projects"
       />
     </svg>
   );

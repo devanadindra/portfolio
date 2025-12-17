@@ -55,7 +55,7 @@ function Navbar() {
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#Home"
+                    href="#home"
                   >
                     {" "}
                     Home{" "}
@@ -64,7 +64,7 @@ function Navbar() {
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#About"
+                    href="#about"
                   >
                     {" "}
                     About{" "}
@@ -116,7 +116,7 @@ function Navbar() {
                 {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#Home"
+                  href="#home"
                   onClick={closeMenu} 
                 >
                   {" "}
@@ -127,7 +127,7 @@ function Navbar() {
                 {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#About"
+                  href="#about"
                   onClick={closeMenu}
                 >
                   {" "}

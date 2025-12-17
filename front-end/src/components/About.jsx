@@ -33,7 +33,7 @@ export function About({ personalData }) {
 
   return (
     <section
-      id="About"
+      id="about"
       className="about pt-4 About-container min-h-screen mx-auto max-w-screen-xl"
     >
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
