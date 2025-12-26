@@ -18,7 +18,7 @@ export function Project() {
         if (entry.isIntersecting && !fetchedRef.current) {
           fetchedRef.current = true;
 
-          fetch(`${API_BASE}/project/`)
+          fetch(`${API_BASE}/project/all`)
             .then((res) => {
               if (!res.ok) throw new Error("Error");
               return res.json();
