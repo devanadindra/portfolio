@@ -17,14 +17,9 @@ pipeline {
         stage('Generate env files') {
             steps {
                 sh '''
-                # backend env
-                echo "$PORTFOLIO_BE_ENV" > back-end/.env
-
-                # frontend env
-                echo "$PORTFOLIO_FE_ENV" > front-end/.env
-
-                # root env for docker-compose
-                echo "$PORTFOLIO_BE_ENV" > .env
+                printf "%s\n" "$PORTFOLIO_BE_ENV" > back-end/.env
+                printf "%s\n" "$PORTFOLIO_FE_ENV" > front-end/.env
+                printf "%s\n" "$PORTFOLIO_BE_ENV" > .env
                 '''
             }
         }
@@ -32,8 +27,8 @@ pipeline {
         stage('Deploy with Docker Compose') {
             steps {
                 sh '''
-                docker compose down
-                docker compose up -d --build
+                docker compose --env-file .env down
+                docker compose --env-file .env up -d --build
                 '''
             }
         }
