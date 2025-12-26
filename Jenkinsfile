@@ -7,22 +7,24 @@ pipeline {
         disableResume()
     }
 
-    environment {
-        PORTFOLIO_BE_ENV = credentials('PORTFOLIO_BE_ENV')
-        PORTFOLIO_FE_ENV = credentials('PORTFOLIO_FE_ENV')
-    }
-
     stages {
 
         stage('Generate env files') {
             steps {
-                sh '''
-                set -e
-                
-                cp "$PORTFOLIO_BE_ENV" back-end/.env
-                cp "$PORTFOLIO_FE_ENV" front-end/.env
-                cp "$PORTFOLIO_BE_ENV" .env
-                '''
+                withCredentials([
+                    file(credentialsId: 'PORTFOLIO_BE_ENV', variable: 'BE_ENV_FILE'),
+                    file(credentialsId: 'PORTFOLIO_FE_ENV', variable: 'FE_ENV_FILE')
+                ]) {
+                    sh '''
+                    set -e
+
+                    mkdir -p back-end front-end
+
+                    cp "$BE_ENV_FILE" back-end/.env
+                    cp "$FE_ENV_FILE" front-end/.env
+                    cp "$BE_ENV_FILE" .env
+                    '''
+                }
             }
         }
 
