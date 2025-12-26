@@ -66,7 +66,7 @@ func NewDependency(
 
 	project := api.Group("/project")
 	{
-		project.GET("/", mw.JWT(constants.OWNER), projectHandler.GetProjects)
+		project.GET("/", mw.OptionalJWT(constants.OWNER), projectHandler.GetProjects)
 		project.GET("/all", mw.JWT(constants.OWNER), projectHandler.GetAllProjects)
 		project.DELETE("/:id", mw.JWT(constants.OWNER), projectHandler.DeleteProject)
 	}
