@@ -4,6 +4,7 @@ import ReactSwipe from "react-swipe";
 import CertifWaveUP from "../waves/CertifWaveUP";
 import { API_BASE } from "../utils/constants";
 import ProjectWaveUP from "../waves/ProjectWaveUP";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 export function Certification() {
   const [certifData, setCertifData] = useState(null);
@@ -46,15 +47,15 @@ export function Certification() {
   if (error) {
     return (
       <div className="text-center text-red-500">
-              <h4
-                className="font-bold uppercase text-white text-xl text-center md:text-2xl lg:text-4xl"
-                data-aos="fade-down"
-                data-aos-delay="500"
-                data-aos-duration="800"
-                data-aos-offset="500"
-              >
-                Certification
-              </h4>
+        <h4
+          className="font-bold uppercase text-white text-xl text-center md:text-2xl lg:text-4xl"
+          data-aos="fade-down"
+          data-aos-delay="500"
+          data-aos-duration="800"
+          data-aos-offset="500"
+        >
+          Certification
+        </h4>
       </div>
     );
   }
@@ -122,11 +123,7 @@ export function Certification() {
                   data-aos-delay="800"
                   data-aos-duration="800"
                 >
-                  <img
-                    src="/src/assets/gambarpanah-removebg-preview.svg"
-                    alt="previous"
-                    className="rotate-180"
-                  />
+                  <FaArrowLeft className="text-white w-full h-full" />
                 </div>
                 <div
                   onClick={() => reactSwipeEl.current.next()}
@@ -135,10 +132,7 @@ export function Certification() {
                   data-aos-delay="800"
                   data-aos-duration="1000"
                 >
-                  <img
-                    src="/src/assets/gambarpanah-removebg-preview.svg"
-                    alt="next"
-                  />
+                  <FaArrowRight className="text-white w-full h-full" />
                 </div>
               </div>
             </div>

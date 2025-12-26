@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useEffect, useState } from 'react';
 import ReactSwipe from "react-swipe";
 import { API_BASE } from "../utils/constants";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 export function Project() {
   const [projectData, setProjectData] = useState(null);
@@ -104,11 +105,7 @@ export function Project() {
                   data-aos-delay="800"
                   data-aos-duration="800"
                 >
-                  <img
-                    src="/src/assets/gambarpanah-removebg-preview.svg"
-                    alt="previous"
-                    className="rotate-180"
-                  />
+                  <FaArrowLeft className="text-white w-full h-full" />
                 </div>
                 <div
                   onClick={() => reactSwipeEl.current.next()}
@@ -117,10 +114,7 @@ export function Project() {
                   data-aos-delay="800"
                   data-aos-duration="1000"
                 >
-                  <img
-                    src="/src/assets/gambarpanah-removebg-preview.svg"
-                    alt="next"
-                  />
+                  <FaArrowRight className="text-white w-full h-full" />
                 </div>
               </div>
             </div>
