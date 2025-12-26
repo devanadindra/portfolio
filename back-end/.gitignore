@@ -1,4 +1,5 @@
 .env
+.envvps
 predict
 classes.json
 uploads/
