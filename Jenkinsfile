@@ -17,9 +17,11 @@ pipeline {
         stage('Generate env files') {
             steps {
                 sh '''
-                printf "%s\n" "$PORTFOLIO_BE_ENV" > back-end/.env
-                printf "%s\n" "$PORTFOLIO_FE_ENV" > front-end/.env
-                printf "%s\n" "$PORTFOLIO_BE_ENV" > .env
+                set -e
+                
+                cp "$PORTFOLIO_BE_ENV" back-end/.env
+                cp "$PORTFOLIO_FE_ENV" front-end/.env
+                cp "$PORTFOLIO_BE_ENV" .env
                 '''
             }
         }
