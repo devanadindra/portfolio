@@ -3,14 +3,14 @@ version: '3.9'
 services:
   db:
     image: postgres:15
-    container_name: db
+    container_name: db-porto
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${BACKEND_DATABASE_ROOT_USERNAME}
       POSTGRES_PASSWORD: ${BACKEND_DATABASE_ROOT_PASSWORD}
       POSTGRES_DB: ${BACKEND_DATABASE_NAME}
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
 
