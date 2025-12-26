@@ -83,31 +83,20 @@ export function Certification() {
                     className="carousel"
                     ref={reactSwipeEl}
                   >
-                    {certifData?.map((certificate, index) => (
+                    {certifData.map((certificate, index) => (
                       <div className="flex justify-center pt-10" key={index}>
-                        {/* UKURAN GAMBAR: diubah dari w-[100%] ke w-[85%] agar lebih kecil di mobile */}
-                        <div
-                          className="w-[85%] sm:w-[70%] md:w-[70%] lg:w-[50%]"
-                          data-aos="zoom-in"
-                          data-aos-delay="500"
-                          data-aos-duration="800"
-                          data-aos-offset="300"
-                        >
+                        <div className="w-[85%] sm:w-[70%] md:w-[70%] lg:w-[50%]">
                           {certificate.certif_link ? (
-                            <a
-                              href={certificate.certif_link}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
+                            <a href={certificate.certif_link} target="_blank" rel="noreferrer">
                               <img
-                                className="certif_img w-full rounded-2xl bg-contain cursor-pointer hover:scale-105 transition-transform duration-300"
+                                className="w-full rounded-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
                                 src={`${API_BASE}${certificate.img_url}`}
                                 alt={certificate.name}
                               />
                             </a>
                           ) : (
                             <img
-                              className="w-full rounded-2xl bg-contain cursor-default"
+                              className="w-full rounded-2xl cursor-default"
                               src={`${API_BASE}${certificate.img_url}`}
                               alt={certificate.name}
                             />
@@ -117,20 +106,28 @@ export function Certification() {
                     ))}
                   </ReactSwipe>
 
-                  {/* Panah Kiri */}
+                  {/* Panah Desktop */}
                   <div
                     onClick={() => reactSwipeEl.current.prev()}
                     className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14"
                   >
                     <FaArrowLeft className="text-white w-full h-full hover:scale-110 transition-transform" />
                   </div>
-
-                  {/* Panah Kanan */}
                   <div
                     onClick={() => reactSwipeEl.current.next()}
                     className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14"
                   >
                     <FaArrowRight className="text-white w-full h-full hover:scale-110 transition-transform" />
+                  </div>
+
+                  {/* Panah Mobile */}
+                  <div className="flex justify-center gap-10 mt-6 md:hidden">
+                    <div onClick={() => reactSwipeEl.current.prev()} className="cursor-pointer w-10 h-10">
+                      <FaArrowLeft className="text-white w-full h-full" />
+                    </div>
+                    <div onClick={() => reactSwipeEl.current.next()} className="cursor-pointer w-10 h-10">
+                      <FaArrowRight className="text-white w-full h-full" />
+                    </div>
                   </div>
                 </div>
               )}
