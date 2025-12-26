@@ -18,6 +18,8 @@ services:
     restart: unless-stopped
     env_file:
       - ./front-end/.env
+    ports:
+      - "3000:80"
 
   back-end:
     build: ./back-end
