@@ -25,7 +25,6 @@ export function Certification() {
               return res.json();
             })
             .then((res) => {
-              console.log("API /certif/ response:", res.data?.data ?? []);
               setCertifData(res.data?.data ?? []);
             })
             .catch(() => setError(true));
