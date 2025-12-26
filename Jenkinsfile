@@ -7,19 +7,33 @@ pipeline {
         disableResume()
     }
 
+    environment {
+        PORTFOLIO_BE_ENV = credentials('PORTFOLIO_BE_ENV')
+        PORTFOLIO_FE_ENV = credentials('PORTFOLIO_FE_ENV')
+    }
+
     stages {
-        stage('Checkout') {
+
+        stage('Generate env files') {
             steps {
-                checkout scm
+                sh '''
+                # backend env
+                echo "$PORTFOLIO_BE_ENV" > back-end/.env
+
+                # frontend env
+                echo "$PORTFOLIO_FE_ENV" > front-end/.env
+
+                # root env for docker-compose
+                echo "$PORTFOLIO_BE_ENV" > .env
+                '''
             }
         }
 
         stage('Deploy with Docker Compose') {
             steps {
                 sh '''
-                docker-compose down
-                docker-compose build
-                docker-compose up -d
+                docker compose down
+                docker compose up -d --build
                 '''
             }
         }
