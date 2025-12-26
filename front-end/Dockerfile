@@ -7,5 +7,8 @@ RUN npm install --frozen-lockfile
 COPY . .
 RUN npm run build
 
+# Step 2: Serve stage
 FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html/front-end
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
