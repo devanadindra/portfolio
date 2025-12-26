@@ -17,7 +17,7 @@ func main() {
 	}
 
 	dbHost := os.Getenv("BACKEND_DATABASE_CONTAINER")
-	dbPort := os.Getenv("BACKEND_DATABASE_PORT")
+	dbPort := os.Getenv("BACKEND_DATABASE_CONTAINER_PORT")
 	dbName := os.Getenv("BACKEND_DATABASE_NAME")
 	dbRoot := os.Getenv("BACKEND_DATABASE_ROOT_USERNAME")
 	dbRootPass := os.Getenv("BACKEND_DATABASE_ROOT_PASSWORD")
