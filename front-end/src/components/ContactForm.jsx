@@ -52,85 +52,90 @@ const ContactForm = () => {
             console.error('Network error:', error);
         }
     };
-    
-    
 
-    return (
-        <section className="relative contactform mt-[200px]">
-            <FormWaveUP />
-            <div className="flex justify-center items-center min-h-screen bg-[#8c2b7a]">
-                <form onSubmit={handleSubmit} className="p-8 w-full max-w-2xl bg-white rounded-md shadow-lg">
-                    <h2
-                        className="text-3xl font-bold mb-6 text-center text-black"
-                        data-aos="fade-down-left"
+return (
+    <section className="relative contactform mt-[100px] md:mt-[200px]"> {/* Mengurangi margin atas di mobile */}
+        <FormWaveUP />
+        <div className="flex justify-center items-center min-h-screen bg-[#8c2b7a] py-10">
+            <form 
+                onSubmit={handleSubmit} 
+                className="p-6 md:p-8 w-[90%] md:w-full md:max-w-2xl bg-white rounded-md shadow-lg"
+            >
+                <h2
+                    className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center text-black"
+                    data-aos="fade-down-left"
+                    data-aos-delay="500"
+                    data-aos-duration="800"
+                    data-aos-offset="300"
+                >
+                    Contact Us ☎️
+                </h2>
+                <h3
+                    className="text-center text-sm md:text-base mb-4 md:mb-6 px-2"
+                    data-aos="fade-down-right"
+                    data-aos-delay="500"
+                    data-aos-duration="800"
+                    data-aos-offset="300"
+                >
+                    Get in touch for collaboration opportunities and exciting tech discussions. Let's innovate together!
+                </h3>
+
+                <div className="mb-4 md:mb-6" data-aos="fade-down-left" data-aos-delay="500" data-aos-duration="800" data-aos-offset="200">
+                    <label htmlFor="name" className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="block w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 text-sm md:text-base"
+                        required
+                    />
+                </div>
+
+                <div className="mb-4 md:mb-6" data-aos="fade-down-right" data-aos-delay="500" data-aos-duration="800" data-aos-offset="200">
+                    <label htmlFor="email" className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="block w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 text-sm md:text-base"
+                        required
+                    />
+                </div>
+
+                <div className="mb-4 md:mb-6" data-aos="fade-down-left" data-aos-delay="500" data-aos-duration="800" data-aos-offset="200">
+                    <label htmlFor="message" className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Message</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="block w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 text-sm md:text-base"
+                        rows="4"
+                        required
+                    ></textarea>
+                </div>
+
+                <div className="flex justify-end">
+                    <button
+                        type="submit"
+                        className="w-full px-4 py-2 md:py-3 bg-black text-white font-medium rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors"
+                        data-aos="zoom-in"
                         data-aos-delay="500"
                         data-aos-duration="800"
-                        data-aos-offset="300"
                     >
-                        Contact Us ☎️
-                    </h2>
-                    <h3
-                        className="text-center mb-6"
-                        data-aos="fade-down-right"
-                        data-aos-delay="500"
-                        data-aos-duration="800"
-                        data-aos-offset="300"
-                    >
-                        Get in touch for collaboration opportunities and exciting tech discussions. Let's innovate together!
-                    </h3>
-                    <div className="mb-6" data-aos="fade-down-left" data-aos-delay="500" data-aos-duration="800" data-aos-offset="200">
-                        <label htmlFor="name" className="block text-lg font-medium text-gray-700 mb-2">Name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800"  // Menambahkan text-gray-800 untuk warna teks
-                            required
-                        />
-                    </div>
-                    <div className="mb-6" data-aos="fade-down-right" data-aos-delay="500" data-aos-duration="800" data-aos-offset="200">
-                        <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-2">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800"  // Menambahkan text-gray-800 untuk warna teks
-                            required
-                        />
-                    </div>
-                    <div className="mb-6" data-aos="fade-down-left" data-aos-delay="500" data-aos-duration="800" data-aos-offset="200">
-                        <label htmlFor="message" className="block text-lg font-medium text-gray-700 mb-2">Message</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800"  // Menambahkan text-gray-800 untuk warna teks
-                            rows="6"
-                            required
-                        ></textarea>
-                    </div>
-                    <div className="flex justify-end">
-                        <button
-                            type="submit"
-                            className="w-full px-4 py-3 bg-black text-white font-medium rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
-                            data-aos="zoom-in"
-                            data-aos-delay="500"
-                            data-aos-duration="800"
-                        >
-                            Submit
-                        </button>
-                    </div>
-                    {successMessage && <p className="mt-4 text-green-600">{successMessage}</p>}
-                    {errorMessage && <p className="mt-4 text-red-600">{errorMessage}</p>}
-                </form>
-            </div>
-        </section>
-    );
+                        Submit
+                    </button>
+                </div>
+                {successMessage && <p className="mt-4 text-green-600 text-sm text-center">{successMessage}</p>}
+                {errorMessage && <p className="mt-4 text-red-600 text-sm text-center">{errorMessage}</p>}
+            </form>
+        </div>
+    </section>
+);
 };
 
 export default ContactForm;
