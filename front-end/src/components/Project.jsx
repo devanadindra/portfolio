@@ -101,13 +101,13 @@ export function Project() {
                   {/* Panah Desktop */}
                   <div
                     onClick={() => reactSwipeEl.current.prev()}
-                    className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14"
+                    className="hidden md:flex absolute left-15 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14"
                   >
                     <FaArrowLeft className="text-white w-full h-full hover:scale-110 transition-transform" />
                   </div>
                   <div
                     onClick={() => reactSwipeEl.current.next()}
-                    className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14"
+                    className="hidden md:flex absolute right-15 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14"
                   >
                     <FaArrowRight className="text-white w-full h-full hover:scale-110 transition-transform" />
                   </div>
