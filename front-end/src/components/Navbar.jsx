@@ -55,7 +55,7 @@ function Navbar() {
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#home"
+                    href="#"
                   >
                     {" "}
                     Home{" "}
@@ -116,7 +116,7 @@ function Navbar() {
                 {/* Memanggil closeMenu saat link diklik */}
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#home"
+                  href="#"
                   onClick={closeMenu} 
                 >
                   {" "}

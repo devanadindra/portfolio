@@ -139,7 +139,7 @@ function Footer() {
 
                 <ul className="mt-6 space-y-4 text-sm">
                   <li>
-                    <a href="#home" className="font-contact text-gray-700 transition hover:opacity-75">Home</a>
+                    <a href="#" className="font-contact text-gray-700 transition hover:opacity-75">Home</a>
                   </li>
 
                   <li>
