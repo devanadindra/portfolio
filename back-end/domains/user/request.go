@@ -10,7 +10,7 @@ import (
 type LoginReq struct {
 	Email    string         `json:"email" valdiate:"required"`
 	Password string         `json:"password" validate:"required"`
-	Role     constants.ROLE `json:"role" validate:"omitempty,oneof=ADMIN CUSTOMER"`
+	Role     constants.ROLE `json:"role" validate:"omitempty,oneof=OWNER CUSTOMER"`
 }
 
 type LogoutReq struct {
